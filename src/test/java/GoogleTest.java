@@ -3,23 +3,18 @@
  */
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import pages.GooglePage;
 import utils.Driver;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 
 public class GoogleTest {
 
     @Test
     public void googleTest() throws MalformedURLException {
-        GooglePage googlePage = new GooglePage("Google", new URL("http://www.google.com/"));
+        GooglePage googlePage = new GooglePage();
         String title = googlePage.getTitle();
 
         WebDriver webDriver = new Driver().start(Driver.Browser.CHROME);

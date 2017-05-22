@@ -1,5 +1,6 @@
 package pages;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -7,11 +8,7 @@ import java.net.URL;
  */
 public class WikipediaPage extends BasePage {
 
-    public WikipediaPage() {
-        super();
-    }
-
-    public WikipediaPage(String title, URL url) {
-        super(title, url);
+    public WikipediaPage() throws MalformedURLException {
+        super("Wikipedia, la enciclopedia libre", new URL("https://es.wikipedia.org/"));
     }
 }
