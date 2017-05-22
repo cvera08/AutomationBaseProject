@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -13,15 +14,15 @@ import java.net.URL;
  */
 public class GooglePage extends BasePage {
 
-    public GooglePage(String title, URL domain) {
-        super(title, domain);
+    public GooglePage() throws MalformedURLException {
+        super("Google", new URL("http://www.google.com/"));
     }
 
     /**
      * Search in google (enter search criteria + press search button)
      *
      * @param webDriver : contains browser session
-     * @param search : search criteria
+     * @param search    : search criteria
      */
     public void searchInGoogle(WebDriver webDriver, String search) {
         System.out.println("Entering searh criteria : " + search);
