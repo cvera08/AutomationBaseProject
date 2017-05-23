@@ -2,8 +2,9 @@
  * Created by carlosvera on 5/11/17.
  */
 
-import org.junit.Assert;
+
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.GooglePage;
 import utils.Driver;
@@ -20,7 +21,7 @@ public class GoogleTest {
         WebDriver webDriver = new Driver().start(Driver.Browser.CHROME);
         webDriver.get(googlePage.getURL());
 
-        Assert.assertTrue("Wrong page title " + title, webDriver.getTitle().contains(title)); //test fails if the title is wrong
+        Assert.assertTrue(webDriver.getTitle().contains(title), "Wrong page title " + title); //test fails if the title is wrong
         googlePage.searchInGoogle(webDriver, "qa automation\n");
 
         boolean result = false;

@@ -1,4 +1,5 @@
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.WikipediaPage;
 import utils.Driver;
@@ -17,6 +18,8 @@ public class WikipediaTest {
         WikipediaPage wikipediaPage = new WikipediaPage(); //Setting title and url domain
         try {
             webDriver.get(wikipediaPage.getURL());
+            wikipediaPage.changeToEnglishLanguage(webDriver);
+            Assert.assertTrue(wikipediaPage.itsInEnglishVersion(webDriver), "FAIL: Wrong title, the page is not in English.\n");
         } catch (Exception e) { //if test fails print the exception & keep open
             e.printStackTrace();
         } finally {
