@@ -32,9 +32,4 @@ public class WikipediaPage extends BasePage {
             }
         });
     }
-
-    public boolean itsInEnglishVersion(WebDriver webDriver) {
-        Reporter.log("\n Verifying title of page is in English");
-        return webDriver.getTitle().contains("Wikipedia, the free encyclopedia");
-    }
 }
