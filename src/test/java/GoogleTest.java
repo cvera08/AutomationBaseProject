@@ -4,10 +4,10 @@
 
 
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 import pages.GooglePage;
+import utils.CommonValidations;
 import utils.Driver;
 
 import java.net.MalformedURLException;
@@ -22,9 +22,8 @@ public class GoogleTest {
         WebDriver webDriver = new Driver().start(Driver.Browser.CHROME);
         webDriver.get(googlePage.getURL());
 
-        Reporter.log("Checking google title");
-        Assert.assertTrue(webDriver.getTitle().contains(title), "Wrong page title " + title); //test fails if the title is wrong
-        
+        CommonValidations.verifyTitleOfThePage(webDriver, title);
+
         googlePage.searchInGoogle(webDriver, "qa automation");
 
         boolean result = false;
