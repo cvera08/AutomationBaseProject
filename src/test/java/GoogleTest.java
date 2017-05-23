@@ -5,6 +5,7 @@
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.Test;
 import pages.GooglePage;
 import utils.Driver;
@@ -21,8 +22,10 @@ public class GoogleTest {
         WebDriver webDriver = new Driver().start(Driver.Browser.CHROME);
         webDriver.get(googlePage.getURL());
 
+        Reporter.log("Checking google title");
         Assert.assertTrue(webDriver.getTitle().contains(title), "Wrong page title " + title); //test fails if the title is wrong
-        googlePage.searchInGoogle(webDriver, "qa automation\n");
+        
+        googlePage.searchInGoogle(webDriver, "qa automation");
 
         boolean result = false;
         try {
@@ -30,7 +33,7 @@ public class GoogleTest {
         } catch (Exception e) { //if test fails print the exception & keep open
             e.printStackTrace();
         } finally {
-            System.out.println("Test " + (result ? "passed." : "failed."));
+            Reporter.log("\n Test " + (result ? "passed." : "failed."));
             webDriver.quit(); // close the browser at the end
         }
     }
