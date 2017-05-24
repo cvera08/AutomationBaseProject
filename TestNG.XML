@@ -6,9 +6,14 @@
         <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
     </listeners>
 
-    <test name="test Automation Base Project">
+    <test name="Test : Google">
         <classes>
             <class name="GoogleTest"/>
+        </classes>
+    </test>
+
+    <test name="Test : Wikipedia">
+        <classes>
             <class name="WikipediaTest"/>
         </classes>
     </test>
