@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="TestSuite Automation Base Project" thread-count="2" parallel="methods" >
+<suite name="TestSuite Automation Base Project" thread-count="2" parallel="tests">
     <listeners>
         <listener class-name="org.uncommons.reportng.HTMLReporter"/>
         <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
     </listeners>
 
     <test name="Test : Google">
+        <parameter name="expectedTitle" value="Google"/>
+        <parameter name="search" value="qa automation"/>
+        <parameter name="titleQAAutoNet" value="QA Automation"/>
         <classes>
             <class name="GoogleTest"/>
         </classes>
     </test>
 
     <test name="Test : Wikipedia">
+        <parameter name="expectedTitle" value="Wikipedia, the free encyclopedia"/>
         <classes>
             <class name="WikipediaTest"/>
         </classes>

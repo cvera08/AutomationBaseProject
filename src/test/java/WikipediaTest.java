@@ -1,5 +1,6 @@
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.WikipediaPage;
 import utils.CommonValidations;
@@ -21,14 +22,15 @@ public class WikipediaTest {
     }
 
     @Test
-    public void wikipediaTest() throws MalformedURLException {
+    @Parameters("expectedTitle")
+    public void wikipediaTest(String expectedTitle) throws MalformedURLException {
         WikipediaPage wikipediaPage = new WikipediaPage(); //Setting title and url domain
 
         try {
             webDriver.get(wikipediaPage.getURL());
             wikipediaPage.changeToEnglishLanguage(webDriver);
 
-            CommonValidations.verifyTitleOfThePage(webDriver, "Wikipedia, the free encyclopedia");
+            CommonValidations.verifyTitleOfThePage(webDriver, expectedTitle);
         } catch (Exception e) { //if test fails print the exception & keep open
             e.printStackTrace();
         } finally {
