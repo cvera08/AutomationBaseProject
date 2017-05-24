@@ -1,5 +1,5 @@
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.WikipediaPage;
 import utils.CommonValidations;
@@ -12,10 +12,16 @@ import java.net.MalformedURLException;
  */
 public class WikipediaTest {
 
+    WebDriver webDriver;
+
+    @BeforeTest
+    public void setup() {
+        Driver browser = new Driver();
+        webDriver = browser.start(Driver.Browser.FIREFOX); //Using Firefox as Browser
+    }
+
     @Test
     public void wikipediaTest() throws MalformedURLException {
-        Driver browser = new Driver();
-        WebDriver webDriver = browser.start(Driver.Browser.FIREFOX); //Using Firefox as Browser
         WikipediaPage wikipediaPage = new WikipediaPage(); //Setting title and url domain
 
         try {
@@ -30,5 +36,6 @@ public class WikipediaTest {
         }
 
     }
+
 
 }
