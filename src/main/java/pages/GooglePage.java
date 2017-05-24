@@ -38,7 +38,7 @@ public class GooglePage extends BasePage {
      * @param webDriver
      * @return
      */
-    public boolean ResultsPageContainsQAAutoNet(final WebDriver webDriver, String title) {
+    public boolean ResultsPageContainsQAAutoNet(final WebDriver webDriver, String titleQAAutoNet) {
         // Wait for search to complete
         Wait<WebDriver> wait = new WebDriverWait(webDriver, 30);
         wait.until(new ExpectedCondition<Boolean>() {
@@ -47,7 +47,7 @@ public class GooglePage extends BasePage {
                 return webDriver.findElement(By.id("resultStats")) != null;
             }
         });
-        return webDriver.findElement(By.cssSelector("a[href*='www.qaautomation.net']")).getText().contains(title);
+        return webDriver.findElement(By.cssSelector("a[href*='www.qaautomation.net']")).getText().contains(titleQAAutoNet);
     }
 
 }
