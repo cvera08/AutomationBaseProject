@@ -22,9 +22,9 @@ public class Driver {
     public WebDriver start(Browser browserName) {
         WebDriver webDriver;
         if (browserName.equals(Browser.CHROME)) {
-            webDriver = driverChrome();
+            webDriver = driverChrome(); //Make sure you have installed Chrome in your computer
         } else if (browserName.equals(Browser.FIREFOX)) {
-            webDriver = driverFirefox();
+            webDriver = driverFirefox(); //Make sure you have installed Firefox in your computer
         } else {
             throw new UnsupportedOperationException("Unsupported Browser type"); //Including Internet Explorer (just for testing purposes)
         }
@@ -46,7 +46,16 @@ public class Driver {
      * @return @return webDriver instance
      */
     private WebDriver driverChrome() {
-        File file = new File("chromedriver-mac-64bit"); //you need to have located "chromedriver-mac-64bit" file in the root project directory
+        String OS = System.getProperty("os.name").toLowerCase();
+        File file;
+        if (OS.contains("mac os x"))
+            file = new File("chromedriver-mac-64bit"); //you need to have located "chromedriver-mac-64bit" file in the root project directory
+        else if(OS.contains("windows"))
+            file = new File("chromedriver.exe");
+        else if(OS.contains("linux"))
+            file = new File("chromedriver_linux32"); //Change to chromedriver_linux64 if you have installed this version in your computer
+        else
+            throw new UnsupportedOperationException("Unsupported Operating System type");
         System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
         WebDriver driver = new ChromeDriver();
         return driver;
@@ -59,7 +68,7 @@ public class Driver {
      * @return webDriver instance
      */
     private WebDriver driverFirefox() {
-        WebDriver driver = new FirefoxDriver(); //make sure you have the "geckodriver" file in the root project directory
+        WebDriver driver = new FirefoxDriver(); //For Mac OS: make sure you have the "geckodriver" file in the root project directory
         return driver;
     }
 
