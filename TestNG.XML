@@ -9,7 +9,7 @@
     <test name="Test : Google">
         <parameter name="expectedTitle" value="Google"/>
         <parameter name="search" value="qa automation"/>
-        <parameter name="titleQAAutoNet" value="QA Automation"/>
+        <parameter name="expectedUrl" value="www.qaautomation.net"/>
         <classes>
             <class name="GoogleTest"/>
         </classes>

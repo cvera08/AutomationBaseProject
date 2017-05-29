@@ -1,10 +1,12 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.Reporter;
 
 import java.net.MalformedURLException;
@@ -38,7 +40,7 @@ public class GooglePage extends BasePage {
      * @param webDriver
      * @return
      */
-    public boolean ResultsPageContainsQAAutoNet(final WebDriver webDriver, String titleQAAutoNet) {
+    public void ResultsPageContainsUrl(final WebDriver webDriver, String expectedUrl) {
         // Wait for search to complete
         Wait<WebDriver> wait = new WebDriverWait(webDriver, 30);
         wait.until(new ExpectedCondition<Boolean>() {
@@ -47,7 +49,13 @@ public class GooglePage extends BasePage {
                 return webDriver.findElement(By.id("resultStats")) != null;
             }
         });
-        return webDriver.findElement(By.cssSelector("a[href*='www.qaautomation.net']")).getText().contains(titleQAAutoNet);
+        boolean found = false;
+        try {
+            found = webDriver.findElement(By.cssSelector("a[href*='" + expectedUrl + "']")).isDisplayed();
+        } catch (NoSuchElementException e) { //expectedUrl is not displayed. so, found keeps false
+        } catch (Exception e) {
+        }
+        Assert.assertTrue(found, expectedUrl + " not found. Test Failed" + "\n");
     }
 
 }

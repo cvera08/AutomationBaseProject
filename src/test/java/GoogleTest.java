@@ -4,7 +4,6 @@
 
 
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -25,8 +24,8 @@ public class GoogleTest {
     }
 
     @Test
-    @Parameters({"expectedTitle", "search", "titleQAAutoNet"})
-    public void googleTest(String expectedTitle, String search, String titleQAAutoNet) throws MalformedURLException {
+    @Parameters({"expectedTitle", "search", "expectedUrl"})
+    public void googleTest(String expectedTitle, String search, String expectedUrl) throws MalformedURLException {
         GooglePage googlePage = new GooglePage();
 
         webDriver.get(googlePage.getURL());
@@ -35,7 +34,7 @@ public class GoogleTest {
 
         googlePage.searchInGoogle(webDriver, search);
 
-        Assert.assertTrue(googlePage.ResultsPageContainsQAAutoNet(webDriver, titleQAAutoNet), titleQAAutoNet + " title not found. Test Failed" + "\n");
+        googlePage.ResultsPageContainsUrl(webDriver, expectedUrl);
     }
 
     @AfterTest

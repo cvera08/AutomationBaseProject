@@ -50,9 +50,9 @@ public class Driver {
         File file;
         if (OS.contains("mac os x"))
             file = new File("chromedriver-mac-64bit"); //you need to have located "chromedriver-mac-64bit" file in the root project directory
-        else if(OS.contains("windows"))
+        else if (OS.contains("windows"))
             file = new File("chromedriver.exe");
-        else if(OS.contains("linux"))
+        else if (OS.contains("linux"))
             file = new File("chromedriver_linux32"); //Change to chromedriver_linux64 if you have installed this version in your computer
         else
             throw new UnsupportedOperationException("Unsupported Operating System type");
