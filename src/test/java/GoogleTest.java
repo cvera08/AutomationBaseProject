@@ -26,15 +26,13 @@ public class GoogleTest {
     @Test
     @Parameters({"expectedTitle", "search", "expectedUrl"})
     public void googleTest(String expectedTitle, String search, String expectedUrl) throws MalformedURLException {
-        GooglePage googlePage = new GooglePage();
-
-        webDriver.get(googlePage.getURL());
+        GooglePage googlePage = new GooglePage(webDriver); //Setting title, url domain and open google url in browser
 
         CommonValidations.verifyTitleOfThePage(webDriver, expectedTitle);
 
-        googlePage.searchInGoogle(webDriver, search);
-
-        googlePage.ResultsPageContainsUrl(webDriver, expectedUrl);
+        googlePage
+                .searchInGoogle(webDriver, search)
+                .resultsPageContainsUrl(webDriver, expectedUrl);
     }
 
     @AfterTest

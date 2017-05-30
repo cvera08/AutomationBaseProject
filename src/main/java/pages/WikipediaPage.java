@@ -15,11 +15,12 @@ import java.net.URL;
  */
 public class WikipediaPage extends BasePage {
 
-    public WikipediaPage() throws MalformedURLException {
+    public WikipediaPage(WebDriver webDriver) throws MalformedURLException {
         super("Wikipedia, la enciclopedia libre", new URL("https://es.wikipedia.org/")); //Open Wikipedia in Spanish version
+        webDriver.get(this.getURL());
     }
 
-    public void changeToEnglishLanguage(WebDriver webDriver) {
+    public WikipediaPage changeToEnglishLanguage(WebDriver webDriver) {
         Reporter.log("Changing language to English");
         webDriver.findElement(By.cssSelector("a[title='inglés']")).click();
 
@@ -31,5 +32,6 @@ public class WikipediaPage extends BasePage {
                 return webDriver.getCurrentUrl().contains("https://en.wikipedia.org/");
             }
         });
+        return this;
     }
 }

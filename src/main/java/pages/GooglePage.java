@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,8 +18,9 @@ import java.net.URL;
  */
 public class GooglePage extends BasePage {
 
-    public GooglePage() throws MalformedURLException {
+    public GooglePage(WebDriver webDriver) throws MalformedURLException {
         super("Google", new URL("http://www.google.com/"));
+        webDriver.get(this.getURL());
     }
 
     /**
@@ -27,11 +29,14 @@ public class GooglePage extends BasePage {
      * @param webDriver : contains browser session
      * @param search    : search criteria
      */
-    public void searchInGoogle(WebDriver webDriver, String search) {
+    public GooglePage searchInGoogle(WebDriver webDriver, String search) {
         Reporter.log("Entering searh criteria : " + search);
-        webDriver.findElement(By.name("q")).sendKeys(search); //type search query
+        WebElement googleInput = webDriver.findElement(By.name("q"));
+        googleInput.clear(); //clear search box
+        googleInput.sendKeys(search); //type search query
         Reporter.log("Pressing Search button");
         webDriver.findElement(By.name("btnG")).click();// click search
+        return this;
     }
 
     /**
@@ -40,7 +45,7 @@ public class GooglePage extends BasePage {
      * @param webDriver
      * @return
      */
-    public void ResultsPageContainsUrl(final WebDriver webDriver, String expectedUrl) {
+    public GooglePage resultsPageContainsUrl(final WebDriver webDriver, String expectedUrl) {
         // Wait for search to complete
         Wait<WebDriver> wait = new WebDriverWait(webDriver, 30);
         wait.until(new ExpectedCondition<Boolean>() {
@@ -56,6 +61,7 @@ public class GooglePage extends BasePage {
         } catch (Exception e) {
         }
         Assert.assertTrue(found, expectedUrl + " not found. Test Failed" + "\n");
+        return this;
     }
 
 }
