@@ -24,10 +24,9 @@ public class WikipediaTest {
     @Test
     @Parameters("expectedTitle")
     public void wikipediaTest(String expectedTitle) throws MalformedURLException {
-        WikipediaPage wikipediaPage = new WikipediaPage(); //Setting title and url domain
+        WikipediaPage wikipediaPage = new WikipediaPage(webDriver); //Setting title, url domain and open wikipedia url in browser
 
         try {
-            webDriver.get(wikipediaPage.getURL());
             wikipediaPage.changeToEnglishLanguage(webDriver);
 
             CommonValidations.verifyTitleOfThePage(webDriver, expectedTitle);
