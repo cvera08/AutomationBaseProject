@@ -3,25 +3,14 @@
  */
 
 
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.GooglePage;
 import utils.CommonValidations;
-import utils.Driver;
 
 import java.net.MalformedURLException;
 
-public class GoogleTest {
-
-    WebDriver webDriver;
-
-    @BeforeTest
-    public void setup() {
-        webDriver = new Driver().start(Driver.Browser.CHROME);
-    }
+public class GoogleTest extends BaseTest {
 
     @Test
     @Parameters({"expectedTitle", "search", "expectedUrl"})
@@ -33,11 +22,6 @@ public class GoogleTest {
         googlePage
                 .searchInGoogle(webDriver, search)
                 .resultsPageContainsUrl(webDriver, expectedUrl);
-    }
-
-    @AfterTest
-    public void closeBrowser() {
-        webDriver.quit(); // close the browser at the end
     }
 
 }

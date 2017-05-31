@@ -20,6 +20,7 @@ public class GooglePage extends BasePage {
 
     public GooglePage(WebDriver webDriver) throws MalformedURLException {
         super("Google", new URL("http://www.google.com/"));
+        Reporter.log("Opening url : " + this.getURL());
         webDriver.get(this.getURL());
     }
 
@@ -30,7 +31,7 @@ public class GooglePage extends BasePage {
      * @param search    : search criteria
      */
     public GooglePage searchInGoogle(WebDriver webDriver, String search) {
-        Reporter.log("Entering searh criteria : " + search);
+        Reporter.log("Entering search criteria : " + search);
         WebElement googleInput = webDriver.findElement(By.name("q"));
         googleInput.clear(); //clear search box
         googleInput.sendKeys(search); //type search query
@@ -57,6 +58,7 @@ public class GooglePage extends BasePage {
         boolean found = false;
         try {
             found = webDriver.findElement(By.cssSelector("a[href*='" + expectedUrl + "']")).isDisplayed();
+            Reporter.log("Expected url : " + expectedUrl + " found.");
         } catch (NoSuchElementException e) { //expectedUrl is not displayed. so, found keeps false
         } catch (Exception e) {
         }

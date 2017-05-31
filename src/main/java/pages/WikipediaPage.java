@@ -17,6 +17,7 @@ public class WikipediaPage extends BasePage {
 
     public WikipediaPage(WebDriver webDriver) throws MalformedURLException {
         super("Wikipedia, la enciclopedia libre", new URL("https://es.wikipedia.org/")); //Open Wikipedia in Spanish version
+        Reporter.log("Opening url : " + this.getURL());
         webDriver.get(this.getURL());
     }
 

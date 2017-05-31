@@ -1,0 +1,64 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh15100\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 README:\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\
+\
+How to execute this Automation Project:\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+Download AutomationBaseProject.zip\
+Extract the zip file in any <location>\
+\
+Open the project using IntelliJ (You can use Eclipse too)\
+ -File > Open\
+ -Navigate to your <location>  (Where You extracted the file)\
+ -Press Open\
+The maven dependencies (for Selenium, TestNg, ReporterNg, etc) will start to download. It can take a couple of minutes.\
+\
+Open the project structure (AutomationBaseProject folder)\
+Select the TestNG.XML file > right-click > Run \'91testNg\'92\
+\
+If something goes wrong try the following:\
+ -Make sure you have installed Firefox and Chrome Browser in your computer, in order to be able to see all the tests as passed after your run. \
+ -View > Tools Windows > Maven Project > click in the \'93blue round arrows\'94 icon (Reimport All Maven Projects). Wait until it\'92s finished. Try to run them again.\
+ -Check console issues.\
+ -If you couldn\'92t figured out why it\'92s not working as expected, please contact me: cvera08@gmail.com\
+\
+If you could run the tests (x2), you\'92ll see an user friendly report going through: <location>/AutomationBaseProject/test-output/html/index.html\
+\
+\
+Tools that were used to develop this project:\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 -Selenium\
+-Java\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 -Maven\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 -Git\
+-TestNg (tests executions, logs, asserts, etc)\
+-ReporterNg\
+-IntelliJ\
+\
+\
+\
+Methodologies, programming practices and final comments:\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 - Page Objects Model (POM) was used to develop the project.\
+- Inheritance. FE: to re-use code and avoid duplicate it. You can find base pages like BaseTest.java, BasePage.java, etc as parent classes. FE: GooglePage.java extends from BasePage.java\
+- 3 layers were used:\
+*.xml \'97> Mainly to run the tests, pass arguments and select browser\
+* test.java \'97> To call the methods/events and validations to execute\
+* pages.java \'97> Methods and validations of each page (using PO pattern)\
+- The tests can be run in parallel (because I used testNg for the executions) using the same or different browser type.\
+- It works on Mac, Linux & Windows, since the selenium drivers for each OS are included .\
+}
