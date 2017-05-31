@@ -1,40 +1,24 @@
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.WikipediaPage;
 import utils.CommonValidations;
-import utils.Driver;
 
 import java.net.MalformedURLException;
 
 /**
  * Created by carlosvera on 5/11/17.
  */
-public class WikipediaTest {
+public class WikipediaTest extends BaseTest {
 
-    WebDriver webDriver;
-
-    @BeforeTest
-    public void setup() {
-        Driver browser = new Driver();
-        webDriver = browser.start(Driver.Browser.FIREFOX); //Using Firefox as Browser
-    }
 
     @Test
     @Parameters("expectedTitle")
     public void wikipediaTest(String expectedTitle) throws MalformedURLException {
         WikipediaPage wikipediaPage = new WikipediaPage(webDriver); //Setting title, url domain and open wikipedia url in browser
 
-        try {
-            wikipediaPage.changeToEnglishLanguage(webDriver);
+        wikipediaPage.changeToEnglishLanguage(webDriver);
 
-            CommonValidations.verifyTitleOfThePage(webDriver, expectedTitle);
-        } catch (Exception e) { //if test fails print the exception & keep open
-            e.printStackTrace();
-        } finally {
-            webDriver.quit(); //Close the browser at the end of the test  //webDriver.close(); --> doesn't work in firefox
-        }
+        CommonValidations.verifyTitleOfThePage(webDriver, expectedTitle);
 
     }
 
