@@ -36,7 +36,7 @@ public class GooglePage extends BasePage {
         googleInput.clear(); //clear search box
         googleInput.sendKeys(search); //type search query
         Reporter.log("Pressing Search button");
-        webDriver.findElement(By.name("btnG")).click();// click search
+        webDriver.findElement(By.xpath("(//input[@name='btnK'])[2]")).click();// click search
         return this;
     }
 
@@ -52,7 +52,7 @@ public class GooglePage extends BasePage {
         wait.until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver webDriver) {
                 Reporter.log("\n Searching ...");
-                return webDriver.findElement(By.id("resultStats")) != null;
+                return webDriver.findElement(By.id("result-stats")) != null;
             }
         });
         boolean found = false;
