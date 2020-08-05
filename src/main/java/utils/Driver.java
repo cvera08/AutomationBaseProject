@@ -56,7 +56,7 @@ public class Driver {
             file = new File("chromedriver_linux32"); //Change to chromedriver_linux64 if you have installed this version in your computer
         else
             throw new UnsupportedOperationException("Unsupported Operating System type");
-        System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
+//        System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());  //Disable this line if you have your own chromedriver (a version installed on your host/local machine). To check it, type this in your terminal: chromedriver --version
         WebDriver driver = new ChromeDriver();
         return driver;
     }

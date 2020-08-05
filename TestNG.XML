@@ -10,14 +10,14 @@
         <!-- no needed browser parameter. It'll use default browser (CHROME) -->
         <parameter name="expectedTitle" value="Google"/>
         <parameter name="search" value="qa automation"/>
-        <parameter name="expectedUrl" value="www.qaautomation.net"/>
+        <parameter name="expectedUrl" value="www.udemy.com"/>
         <classes>
             <class name="GoogleTest"/>
         </classes>
     </test>
 
     <test name="Test : Wikipedia">
-        <parameter name="browser" value="FIREFOX"/>
+<!--        <parameter name="browser" value="FIREFOX"/>-->
         <parameter name="expectedTitle" value="Wikipedia, the free encyclopedia"/>
         <classes>
             <class name="WikipediaTest"/>
