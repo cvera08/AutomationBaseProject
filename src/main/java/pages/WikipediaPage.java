@@ -12,8 +12,11 @@ import java.net.URL;
 
 /**
  * Created by carlosvera on 5/15/17.
+ * Page Object. Encapsulates Wikipedia Launch Page.
  */
 public class WikipediaPage extends BasePage {
+
+    private By enLanguage = By.cssSelector("a[title='inglés']");
 
     public WikipediaPage(WebDriver webDriver) throws MalformedURLException {
         super("Wikipedia, la enciclopedia libre", new URL("https://es.wikipedia.org/")); //Open Wikipedia in Spanish version
@@ -23,7 +26,7 @@ public class WikipediaPage extends BasePage {
 
     public WikipediaPage changeToEnglishLanguage(WebDriver webDriver) {
         Reporter.log("Changing language to English");
-        webDriver.findElement(By.cssSelector("a[title='inglés']")).click();
+        webDriver.findElement(enLanguage).click();
 
         // Wait for change to English version
         Wait<WebDriver> wait = new WebDriverWait(webDriver, 30);

@@ -15,8 +15,13 @@ import java.net.URL;
 
 /**
  * Created by carlosvera on 5/15/17.
+ * Page Object encapsulates the Google main page.
  */
 public class GooglePage extends BasePage {
+
+    private By resultsList = By.id("result-stats");
+    private By gInput = By.name("q");
+    private By searchButton = By.xpath("(//input[@name='btnK'])[2]");
 
     public GooglePage(WebDriver webDriver) throws MalformedURLException {
         super("Google", new URL("http://www.google.com/"));
@@ -32,11 +37,11 @@ public class GooglePage extends BasePage {
      */
     public GooglePage searchInGoogle(WebDriver webDriver, String search) {
         Reporter.log("Entering search criteria : " + search);
-        WebElement googleInput = webDriver.findElement(By.name("q"));
+        WebElement googleInput = webDriver.findElement(gInput);
         googleInput.clear(); //clear search box
         googleInput.sendKeys(search); //type search query
         Reporter.log("Pressing Search button");
-        webDriver.findElement(By.xpath("(//input[@name='btnK'])[2]")).click();// click search
+        webDriver.findElement(searchButton).click();// click search
         return this;
     }
 
@@ -52,7 +57,7 @@ public class GooglePage extends BasePage {
         wait.until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver webDriver) {
                 Reporter.log("\n Searching ...");
-                return webDriver.findElement(By.id("result-stats")) != null;
+                return webDriver.findElement(resultsList) != null;
             }
         });
         boolean found = false;
