@@ -1,7 +1,9 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,17 +18,19 @@ import java.net.URL;
  */
 public class WikipediaPage extends BasePage {
 
-    private By enLanguage = By.cssSelector("a[title='inglés']");
+    @FindBy(css = "a[title='inglés']")
+    WebElement enLanguage;
 
     public WikipediaPage(WebDriver webDriver) throws MalformedURLException {
         super("Wikipedia, la enciclopedia libre", new URL("https://es.wikipedia.org/")); //Open Wikipedia in Spanish version
         Reporter.log("Opening url : " + this.getURL());
         webDriver.get(this.getURL());
+        PageFactory.initElements(webDriver, this);
     }
 
     public WikipediaPage changeToEnglishLanguage(WebDriver webDriver) {
         Reporter.log("Changing language to English");
-        webDriver.findElement(enLanguage).click();
+        enLanguage.click();
 
         // Wait for change to English version
         Wait<WebDriver> wait = new WebDriverWait(webDriver, 30);

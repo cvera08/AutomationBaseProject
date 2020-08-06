@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,12 +21,18 @@ import java.net.URL;
  */
 public class GooglePage extends BasePage {
 
-    private By resultsList = By.id("result-stats");
-    private By gInput = By.name("q");
-    private By searchButton = By.xpath("(//input[@name='btnK'])[2]");
+    @FindBy(id = "result-stats")
+    WebElement resultsList;
+
+    @FindBy(name = "q")
+    WebElement gInput;
+
+    @FindBy(xpath = "(//input[@name='btnK'])[2]")
+    WebElement searchButton;
 
     public GooglePage(WebDriver webDriver) throws MalformedURLException {
         super("Google", new URL("http://www.google.com/"));
+        PageFactory.initElements(webDriver, this);
         Reporter.log("Opening url : " + this.getURL());
         webDriver.get(this.getURL());
     }
@@ -37,11 +45,10 @@ public class GooglePage extends BasePage {
      */
     public GooglePage searchInGoogle(WebDriver webDriver, String search) {
         Reporter.log("Entering search criteria : " + search);
-        WebElement googleInput = webDriver.findElement(gInput);
-        googleInput.clear(); //clear search box
-        googleInput.sendKeys(search); //type search query
+        gInput.clear(); //clear search box
+        gInput.sendKeys(search); //type search query
         Reporter.log("Pressing Search button");
-        webDriver.findElement(searchButton).click();// click search
+        searchButton.click();// click search
         return this;
     }
 
@@ -57,7 +64,7 @@ public class GooglePage extends BasePage {
         wait.until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver webDriver) {
                 Reporter.log("\n Searching ...");
-                return webDriver.findElement(resultsList) != null;
+                return resultsList != null;
             }
         });
         boolean found = false;
